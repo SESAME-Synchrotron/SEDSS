@@ -6,8 +6,7 @@ SEEDS is a set of python methods that includes common procedures/techniques bein
 
 Examples of methods:
 
-Markup : 1. A numbered list
-              1. A nested numbered list
-              2. Which is numbered
-          2. Which is numbered
-
+1. Standered CLI messages/quistions 
+2. Standered GUI messages/questions 
+3. A method to calculate theta. 
+4. etc.. (see the code for more detiles)
