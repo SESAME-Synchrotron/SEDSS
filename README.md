@@ -6,7 +6,8 @@ SEEDS is a set of python methods that includes common procedures/techniques bein
 
 Examples of methods:
 
-1. Standered CLI messages/quistions 
-2. Standered GUI messages/questions 
-3. A method to calculate theta. 
-4. etc.. (see the code for more detiles)
+1. Minimize the "line of code" among the projects.
+2. Standered CLI messages/quistions 
+3. Standered GUI messages/questions 
+4. A method to calculate theta. 
+5. etc.. (see the code for more detiles)
