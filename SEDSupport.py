@@ -4,6 +4,8 @@ SED support modules are written here
 
 import decimal 
 import json 
+from SEDSupplements import CLIMessage
+import ntpath
 
 class motorFun:
 
@@ -25,13 +27,18 @@ class motorFun:
 class readFile():
 	def __init__(self, fullFileName):
 		self.file = fullFileName
+		self.path, self.fName = ntpath.split(fullFileName)
+		print (self.tail)
 
-	def readJSON(self):
+	def readJSON(self, Print="N"):
 		try:
 			with open(self.file, "r") as jsonFile:
 				jsonFileContent  = json.load(jsonFile)
 				jsonFile.close()
 				return jsonFileContent
+				if lower(Print) in ("y", "yes"):
+					CLIMessage("Printing {} file contents".format(self.fName))
 		except Exception as e:
 			print("{} load error".format(path))
-			print(e)	
+			print(e)
+
