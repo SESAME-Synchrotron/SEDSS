@@ -43,6 +43,6 @@ class readFile():
 				return jsonFileContent
 
 		except Exception as e:
-			CLIMessage ("{} :: load error".format(self.JFName))
+			CLIMessage ("{} :: load error".format(self.JFName), "E")
 			print(e)
 
