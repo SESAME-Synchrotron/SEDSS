@@ -40,6 +40,7 @@ class readFile():
 				jsonFile.close()
 				if Print.lower() in ("y", "yes"):
 					CLIMessage("Printing {} file contents".format(self.JFName))
+					print (json.dumps(jsonFileContent, indent = 4, sort_keys=True))
 				return jsonFileContent
 
 		except Exception as e:
