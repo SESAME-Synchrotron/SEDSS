@@ -38,7 +38,7 @@ class readFile():
 			with open(self.JFPath+"/"+self.JFName, "r") as jsonFile:
 				jsonFileContent  = json.load(jsonFile)
 				jsonFile.close()
-				if lower(Print) in ("y", "yes"):
+				if Print.lower() in ("y", "yes"):
 					CLIMessage("Printing {} file contents".format(self.JFName))
 				return jsonFileContent
 
