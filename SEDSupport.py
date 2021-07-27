@@ -27,7 +27,7 @@ class motorFun:
 class readFile():
 	def __init__(self, fullFileName):
 		"""
-		A method to read and print JSON files. 
+		A simple and very standard method to read and print JSON files. 
 		JFName: JSON File Name
 		JFPath: JSON File Path
 		"""
