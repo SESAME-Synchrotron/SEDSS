@@ -28,7 +28,7 @@ class readFile():
 	def __init__(self, fullFileName):
 		self.file = fullFileName
 		self.path, self.fName = ntpath.split(fullFileName)
-		print (self.tail)
+		print (self.fName)
 
 	def readJSON(self, Print="N"):
 		try:
