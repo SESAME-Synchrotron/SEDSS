@@ -40,6 +40,6 @@ class readFile():
 				return jsonFileContent
 				
 		except Exception as e:
-			print("{} load error".format(path))
+			print("{} load error".format(fullFileName))
 			print(e)
 
