@@ -3,6 +3,7 @@ SED support modules are written here
 """
 
 import decimal 
+import json 
 
 class motorFun:
 
@@ -20,3 +21,17 @@ class motorFun:
 			r += step
 		#print (points)
 		return points
+
+class readFile():
+	def __init__(self, fullFileName):
+		self.file = fullFileName
+
+	def readJSON(self):
+		try:
+			with open(self.file, "r") as jsonFile:
+				jsonFileContent  = json.load(jsonFile)
+				jsonFile.close()
+				return jsonFileContent
+		except Exception as e:
+			print("{} load error".format(path))
+			print(e)	
