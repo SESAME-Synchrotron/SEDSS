@@ -35,9 +35,10 @@ class readFile():
 			with open(self.file, "r") as jsonFile:
 				jsonFileContent  = json.load(jsonFile)
 				jsonFile.close()
-				return jsonFileContent
 				if lower(Print) in ("y", "yes"):
 					CLIMessage("Printing {} file contents".format(self.jFName))
+				return jsonFileContent
+				
 		except Exception as e:
 			print("{} load error".format(path))
 			print(e)
