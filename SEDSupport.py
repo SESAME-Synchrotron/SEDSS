@@ -4,7 +4,7 @@ SED support modules are written here
 
 import decimal 
 import json 
-from SEDSupplements import CLIMessage
+from SEDSS.SEDSupplements import CLIMessage
 import ntpath
 
 class motorFun:
