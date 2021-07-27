@@ -26,20 +26,23 @@ class motorFun:
 
 class readFile():
 	def __init__(self, fullFileName):
-		self.file = fullFileName
-		self.path, self.jFName = ntpath.split(fullFileName) # JFName: JSON File Name
+		"""
+		JFName: JSON File Name
+		JFPath: JSON File Path
+		"""
+		self.JFPath, self.JFName = ntpath.split(fullFileName)
 		#print (self.fName)
 
 	def readJSON(self, Print="N"):
 		try:
-			with open(self.file, "r") as jsonFile:
+			with open(self.JFPath+"/"+self.JFName, "r") as jsonFile:
 				jsonFileContent  = json.load(jsonFile)
 				jsonFile.close()
 				if lower(Print) in ("y", "yes"):
-					CLIMessage("Printing {} file contents".format(self.jFName))
+					CLIMessage("Printing {} file contents".format(self.JFName))
 				return jsonFileContent
-				
+
 		except Exception as e:
-			print("{} load error".format(self.fullFileName))
+			CLIMessage ("{} :: load error".format(self.JFName))
 			print(e)
 
