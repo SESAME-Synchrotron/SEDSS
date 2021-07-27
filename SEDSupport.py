@@ -27,6 +27,7 @@ class motorFun:
 class readFile():
 	def __init__(self, fullFileName):
 		"""
+		A method to read and print JSON files. 
 		JFName: JSON File Name
 		JFPath: JSON File Path
 		"""
@@ -39,10 +40,10 @@ class readFile():
 				jsonFileContent  = json.load(jsonFile)
 				jsonFile.close()
 				if Print.lower() in ("y", "yes"):
-					CLIMessage("Printing {} file contents".format(self.JFName))
+					CLIMessage("Printing {} file contents | start of file".format(self.JFName))
 					print (json.dumps(jsonFileContent, indent = 4, sort_keys=True))
+					CLIMessage("Printing {} file contents | End of file".format(self.JFName))
 				return jsonFileContent
-
 		except Exception as e:
 			CLIMessage ("{} :: load error".format(self.JFName), "E")
 			print(e)
