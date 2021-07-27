@@ -27,8 +27,8 @@ class motorFun:
 class readFile():
 	def __init__(self, fullFileName):
 		self.file = fullFileName
-		self.path, self.fName = ntpath.split(fullFileName)
-		print (self.fName)
+		self.path, self.jFName = ntpath.split(fullFileName) # JFName: JSON File Name
+		#print (self.fName)
 
 	def readJSON(self, Print="N"):
 		try:
@@ -37,7 +37,7 @@ class readFile():
 				jsonFile.close()
 				return jsonFileContent
 				if lower(Print) in ("y", "yes"):
-					CLIMessage("Printing {} file contents".format(self.fName))
+					CLIMessage("Printing {} file contents".format(self.jFName))
 		except Exception as e:
 			print("{} load error".format(path))
 			print(e)
