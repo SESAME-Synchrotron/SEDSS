@@ -9,6 +9,8 @@ from time import sleep
 
 app = QtWidgets.QApplication(sys.argv)
 
+init()
+
 """
 Graphical User Interface Messages 
 """
