@@ -1,3 +1,5 @@
+# SEDSS Version: 1.0
+# updated on Oct, 12 2021
 import sys
 import progressbar
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
@@ -88,6 +90,24 @@ class UIMessage(QWidget):
         """
         Command Line Interface Input Request class 
         """
+
+class VV():
+    def __init__(self, val, valType): 
+        self.val = val
+        self.valType = valType
+
+        if valType == "I": 
+            self.intVal() # integer validation 
+        elif valType=="IP":
+            self.pIntVal() # positive integer validation 
+
+    def intVal(): 
+        try:
+            Input = int(self.val)       
+        except ValueError:
+            print("Not an integer! Try again.")
+            return False
+
 class CLIInputReq():
     def __init__(self, question, defaultAnswer = None, inputType = None): 
         self.question = question
