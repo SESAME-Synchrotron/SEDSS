@@ -102,14 +102,16 @@ class VV():
             self.pIntVal() # positive integer validation 
 
     def intVal(self): 
-        try:
-            Input = int(self.val)       
-        except ValueError:
+        if isinstance(self.val, int):
+            print ("integer Number validation is OK")
+            return True
+        else:
             return False
 
     def pIntVal(self):
         if self.intVal(): 
             if self.val > 0:
+                print ("Positive integer Number validation is OK")
                 return True
             else:
                 return False
