@@ -101,11 +101,19 @@ class VV():
         elif valType=="IP":
             self.pIntVal() # positive integer validation 
 
-    def intVal(): 
+    def intVal(self): 
         try:
             Input = int(self.val)       
         except ValueError:
-            print("Not an integer! Try again.")
+            return False
+
+    def pIntVal(self):
+        if self.intVal(): 
+            if self.val > 0:
+                return True
+            else:
+                return False
+        else:
             return False
 
 class CLIInputReq():
