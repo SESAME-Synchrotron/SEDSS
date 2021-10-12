@@ -1,4 +1,4 @@
-# SEDSS Version: 1.0
+# SEDSS Version: 0.1.2
 # updated on Oct, 12 2021
 import sys
 import progressbar
