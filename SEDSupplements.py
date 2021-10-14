@@ -399,6 +399,8 @@ class CLIMessage():
             print (Back.YELLOW + message + Style.RESET_ALL)
         elif msgType == "I":
             print (Back.GREEN + message + Style.RESET_ALL)
+        elif msgType == "M":
+            print (Back.MAGENTA + message + Style.RESET_ALL)
         elif msgType == "G":  # just print gap ...
             print ("######################################")
         elif msgType == "IG":
