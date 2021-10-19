@@ -91,7 +91,7 @@ class dataTransfer ():
 			rcmd = 'ls ' + remote_dir
 			# rcmd is the command used to check if the remote directory exists
 			subprocess.check_call(['ssh', remote_server, rcmd], stderr=open(os.devnull, 'wb'), stdout=open(os.devnull, 'wb'))
-			CLIMessage("*** remote directory {} exists".format(remote_dir), "W")
+			CLIMessage("*** remote directory {} exists".format(remote_dir), "I")
 			return 0
 		except subprocess.CalledProcessError as e: 
 			CLIMessage("*** remote directory %s does not exist".format(remote_dir), "E")
