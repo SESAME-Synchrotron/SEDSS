@@ -54,6 +54,7 @@ class readFile():
 
 
 class dataTransfer ():
+	#referance: https://tomoscan.readthedocs.io/en/latest/api/tomoscan_2bm.html
 	def __init__(self, source, destination):
 		self.source = source
 		self.destination = destination
