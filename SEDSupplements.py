@@ -405,6 +405,8 @@ class CLIMessage():
             print ("######################################")
         elif msgType == "IG":
             print(Back.GREEN + message + Style.RESET_ALL, end ="\r")
+        elif msgType == "IO":
+            print(Back.YELLOW + message + Style.RESET_ALL, end ="\r")
         else:
             print("######################################")
             print(message)
