@@ -59,34 +59,34 @@ class dataTransfer ():
 		self.source = source
 		self.destination = destination
 
-	def scp(fname_origin, remote_analysis_dir):
-		remote_server = remote_analysis_dir.split(':')[0]
-		remote_top_dir = remote_analysis_dir.split(':')[1]
-		CLIMessage("*** remote server: {}".format(remote_server))
-		CLIMessage("*** remote top directory: {}".format(remote_top_dir))
-		p = pathlib.Path(fname_origin)
-		fname_destination = remote_analysis_dir + p.parts[-3] + '/' + p.parts[-2] + '/'
+	def scp(self):
+		remote_server = self.destination.split(':')[0]
+		remote_top_dir = self.destination.split(':')[1]
+		CLIMessage("*** remote server: {}".format(remote_server), "M")
+		CLIMessage("*** remote top directory: {}".format(remote_top_dir), "M")
+		p = pathlib.Path(self.source)
+		#fname_destination = self.destination + p.parts[-3] + '/' + p.parts[-2] + '/'
+		fname_destination = self.destination + '/'
 		remote_dir = remote_top_dir + p.parts[-3] + '/' + p.parts[-2] + '/'
+		CLIMessage("*** origin: {}".format(self.source), "M")
+		CLIMessage("*** destination: {}".format(fname_destination),"M")
+		ret = self.check_remote_directory(remote_server, remote_dir)
 
-   		CLIMessage("*** origin: {}".format(fname_origin))
-   		CLIMessage("*** destination: {}".format(fname_destination))
-   		ret = check_remote_directory(remote_server, remote_dir)
-
-   		if ret == 0:
-   			os.system('scp -q ' + fname_origin + ' ' + fname_destination + '&')
-   			CLIMessage("*** Data transfer: Done!")
-   			return 0
+		if ret == 0:
+			os.system('scp -q -r ' + self.source + ' ' + fname_destination + '&')
+			CLIMessage("*** Data transfer: Done!", "I")
+			return 0
 		elif ret == 2:
-			iret = create_remote_directory(remote_server, remote_dir)
+			iret = self.create_remote_directory(remote_server, remote_dir)
 			if iret == 0: 
-				os.system('scp -q ' + fname_origin + ' ' + fname_destination + '&')
+				os.system('scp -q -r ' + self.source + ' ' + fname_destination + '&')
 			CLIMessage("*** Data transfer: Done!", "I")
 			return 0
 		else:
 			CLIMessage("*** Quitting the copy operation", "E")
 			return -1
 
-	def check_remote_directory(remote_server, remote_dir):
+	def check_remote_directory(self, remote_server, remote_dir):
 		try:
 			rcmd = 'ls ' + remote_dir
 			# rcmd is the command used to check if the remote directory exists
@@ -101,7 +101,7 @@ class dataTransfer ():
 				CLIMessage("*** Unknown error code returned: {}".format(e.returncode), "E")
 				return -1
 
-	def create_remote_directory(remote_server, remote_dir):
+	def create_remote_directory(self, remote_server, remote_dir):
 		cmd = 'mkdir -p ' + remote_dir
 		try:
 			CLIMessage("*** creating remote directory {}".format(remote_dir))
