@@ -67,7 +67,8 @@ class dataTransfer ():
 		p = pathlib.Path(self.source)
 		#fname_destination = self.destination + p.parts[-3] + '/' + p.parts[-2] + '/'
 		fname_destination = self.destination + '/'
-		remote_dir = remote_top_dir + p.parts[-3] + '/' + p.parts[-2] + '/'
+		#remote_dir = remote_top_dir + p.parts[-3] + '/' + p.parts[-2] + '/'
+		remote_dir = remote_top_dir + '/'
 		CLIMessage("*** origin: {}".format(self.source), "M")
 		CLIMessage("*** destination: {}".format(fname_destination),"M")
 		ret = self.check_remote_directory(remote_server, remote_dir)
