@@ -10,6 +10,7 @@ import os
 import subprocess
 import pathlib
 from paramiko import SSHClient
+import pipes
 
 class motorFun:
 
@@ -71,6 +72,7 @@ class dataTransfer ():
 		remote_dir = remote_top_dir + '/'
 		CLIMessage("*** origin: {}".format(self.source), "M")
 		CLIMessage("*** destination: {}".format(fname_destination),"M")
+		fname_destination = pipes.quote(fname_destination)
 		ret = self.check_remote_directory(remote_server, remote_dir)
 
 		if ret == 0:
