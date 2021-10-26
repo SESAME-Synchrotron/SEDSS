@@ -11,6 +11,7 @@ import subprocess
 import pathlib
 from paramiko import SSHClient
 import pipes
+import time 
 
 class motorFun:
 
