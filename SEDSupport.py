@@ -120,7 +120,7 @@ class dataTransfer ():
 			CLIMessage("*** Error while creating remote directory. Error code: {}".format(e.returncode))
 			return -1
 
-class time():
+class timeModule():
 	def timer(self, start):
 		end = time.time()
 		hours, rem = divmod(end-start, 3600)
