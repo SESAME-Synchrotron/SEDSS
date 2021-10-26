@@ -121,7 +121,7 @@ class dataTransfer ():
 			return -1
 
 class timeModule():
-	def timer(self, start):
+	def timer(start):
 		end = time.time()
 		hours, rem = divmod(end-start, 3600)
 		minutes, seconds = divmod(rem, 60)
