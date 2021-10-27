@@ -73,9 +73,7 @@ class dataTransfer ():
 		CLIMessage("*** origin: {}".format(self.source), "M")
 		CLIMessage("*** destination: {}".format(fname_destination),"M")
 		fname_destination = pipes.quote(fname_destination)
-		#print("source:", self.source, pipes.quote(self.source))
-		#print("fname:", fname_destination)
-		#print("rd", remote_dir)
+		remote_dir = pipes.quote(remote_dir)
 		self.source = pipes.quote(self.source)
 		ret = self.check_remote_directory(remote_server, remote_dir)
 
