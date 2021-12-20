@@ -118,7 +118,7 @@ class dataTransfer ():
 			CLIMessage("*** Error while creating remote directory. Error code: {}".format(e.returncode))
 			return -1
 
-class instanceDataTransfer ():
+class instantDataTransfer ():
 	"""
 	This class is similar to dataTransfer class. 
 	The only deifference is that, this class does not print out many infomration 
