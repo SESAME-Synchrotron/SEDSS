@@ -119,6 +119,12 @@ class dataTransfer ():
 			return -1
 
 class instanceDataTransfer ():
+	"""
+	This class is similar to dataTransfer class. 
+	The only deifference is that, this class does not print out many infomration 
+	on the terminal because it is meant to be used for frequent data transfer. i.e. 
+	in a loop. 
+	"""
 	#referance: https://tomoscan.readthedocs.io/en/latest/api/tomoscan_2bm.html
 	def __init__(self, source, destination):
 		self.source = source
