@@ -193,7 +193,6 @@ class timeModule():
 		hours, rem = divmod(end-start, 3600)
 		minutes, seconds = divmod(rem, 60)
 		return ("{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds))
-<<<<<<< HEAD
 
 	def timer(start):
 		end = time.time()
@@ -201,5 +200,3 @@ class timeModule():
 		hours, minutes = divmod(rem, 3600)
 		seconds = divmod(minutes, 60)
 		return ("{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds))
-=======
->>>>>>> 2a517c99d261c8e8b501810f4eb601903e842e49
