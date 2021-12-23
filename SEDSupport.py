@@ -199,4 +199,6 @@ class timeModule():
 		days, rem = divmod(end-start, 86400)
 		hours, minutes = divmod(rem, 3600)
 		seconds = divmod(minutes, 60)
-		return ("{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds))
+		return ("{}:{:0>2}:{:0>2}:{:05.2f}".format(int(days),int(hours),int(minutes),seconds))
+
+
