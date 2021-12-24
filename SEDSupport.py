@@ -189,11 +189,11 @@ class instantDataTransfer ():
 
 class timeModule():
 
-def timer(start):
-    end = time.time()
-    days, rem = divmod(end-start, 86400)
-    hours, rem = divmod(rem, 3600)
-    minutes, seconds = divmod(rem, 60)
-    return ("{} days, {:0>2} hours, {:0>2} minutes, {:05.2f} seconds".format(int(days),int(hours),int(minutes),seconds))
+	def timer(start):
+	    end = time.time()
+	    days, rem = divmod(end-start, 86400)
+	    hours, rem = divmod(rem, 3600)
+	    minutes, seconds = divmod(rem, 60)
+	    return ("{} days, {:0>2} hours, {:0>2} minutes, {:05.2f} seconds".format(int(days),int(hours),int(minutes),seconds))
 
 
