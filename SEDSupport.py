@@ -12,6 +12,7 @@ import pathlib
 from paramiko import SSHClient
 import pipes
 import time 
+import re
 
 class motorFun:
 
@@ -204,3 +205,14 @@ class timeModule():
 	    	format(int(days),int(hours),int(minutes),seconds))
 
 
+class fileName():
+	"""This class checks the experimental file path is complied with DAQ standards for SED file name"""
+	def __init__(self, fileName) -> None:
+		self.fileName = fileName
+
+	
+	def BEATS_h5re(self):
+		self.BEATS_SED_Pattern = r'[\s]|[^\w\-]'
+		reg = re.search(self.BEATS_SED_Pattern,self.fileName)
+
+		return bool(reg)
