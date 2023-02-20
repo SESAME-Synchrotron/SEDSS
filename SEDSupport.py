@@ -205,14 +205,12 @@ class timeModule():
 	    	format(int(days),int(hours),int(minutes),seconds))
 
 
-class fileName():
+class fileName:
 	"""This class checks the experimental file path is complied with DAQ standards for SED file name"""
-	def __init__(self, fileName) -> None:
-		self.fileName = fileName
 
-	
-	def BEATS_h5re(self):
-		self.BEATS_SED_Pattern = r'[\s]|[^\w\-]'
-		reg = re.search(self.BEATS_SED_Pattern,self.fileName)
+	@staticmethod	
+	def BEATS_h5re(fileName):
+		""" regex validation of SED file Name for BEATS beamline"""
 
-		return bool(reg)
+		BEATS_SED_Pattern = r'[\s]|[^\w\-]'					#  file path, spaces, special characters except dashes are not allowed
+		return bool(re.search(BEATS_SED_Pattern,fileName))
