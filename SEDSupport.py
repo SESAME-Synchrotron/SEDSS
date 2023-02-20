@@ -205,11 +205,11 @@ class timeModule():
 	    	format(int(days),int(hours),int(minutes),seconds))
 
 
-class fileName:
+class fileName():
 	"""This class checks the experimental file path is complied with DAQ standards for SED file name"""
 
-	@staticmethod	
-	def SED_h5re(filePath, fileName, beamline = "SED"):
+	@staticmethod
+	def SED_h5re(fileName):
 		""" regex validation of SED file Name for BEATS beamline"""
 
 		SED_Pattern = r'[\s]|[^\w\-]'			#  file path, spaces, special characters except dashes are not allowed
@@ -217,11 +217,15 @@ class fileName:
 		
 		if pathValidation:
 			return pathValidation
-		else:	
+
+	@staticmethod
+	def SED_fileName(filePath, fileName, beamline = "SED"):
+			
 			if not re.match(r'\S', fileName): 	# To check a line whether it starts with a non-space character or not.
-				SEDFileName = beamline
+				fileName = beamline
 			SEDTimeStamp = str(time.strftime("%Y%m%dT%H%M%S"))
 			SEDFileName = fileName + "-" + SEDTimeStamp
 			SEDPath = filePath + "/" + SEDFileName
 
 			return SEDPath, SEDFileName, SEDTimeStamp
+	
