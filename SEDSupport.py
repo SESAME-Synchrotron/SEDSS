@@ -209,8 +209,19 @@ class fileName:
 	"""This class checks the experimental file path is complied with DAQ standards for SED file name"""
 
 	@staticmethod	
-	def BEATS_h5re(fileName):
+	def SED_h5re(filePath, fileName, beamline = "SED"):
 		""" regex validation of SED file Name for BEATS beamline"""
 
-		BEATS_SED_Pattern = r'[\s]|[^\w\-]'					#  file path, spaces, special characters except dashes are not allowed
-		return bool(re.search(BEATS_SED_Pattern,fileName))
+		SED_Pattern = r'[\s]|[^\w\-]'			#  file path, spaces, special characters except dashes are not allowed
+		pathValidation = bool(re.search(SED_Pattern,fileName))
+		
+		if pathValidation:
+			return pathValidation
+		else:	
+			if not re.match(r'\S', fileName): 	# To check a line whether it starts with a non-space character or not.
+				SEDFileName = beamline
+			SEDTimeStamp = str(time.strftime("%Y%m%dT%H%M%S"))
+			SEDFileName = fileName + "-" + SEDTimeStamp
+			SEDPath = filePath + "/" + SEDFileName
+
+			return SEDPath, SEDFileName, SEDTimeStamp
