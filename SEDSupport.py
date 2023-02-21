@@ -205,7 +205,7 @@ class timeModule():
 	    	format(int(days),int(hours),int(minutes),seconds))
 
 
-class fileName():
+class fileName:
 	"""This class checks the experimental file path is complied with DAQ standards for SED file name"""
 
 	@staticmethod
@@ -215,8 +215,8 @@ class fileName():
 		SED_Pattern = r'[\s]|[^\w\-]'			#  file path, spaces, special characters except dashes are not allowed
 		pathValidation = bool(re.search(SED_Pattern,fileName))
 		
-		if pathValidation:
-			return pathValidation
+		if pathValidation or fileName.startswith("-"):
+			return True
 
 	@staticmethod
 	def SED_fileName(filePath, fileName, beamline = "SED"):
@@ -228,4 +228,3 @@ class fileName():
 			SEDPath = filePath + "/" + SEDFileName
 
 			return SEDPath, SEDFileName, SEDTimeStamp
-	
