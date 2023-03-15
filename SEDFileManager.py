@@ -46,3 +46,27 @@ class path ():
 				os.mkdir(self.path)
 			except:
 				CLIMessage ('Unable to create the path !!', 'E')
+
+class fileName:
+	"""This class checks the experimental file path is complied with DAQ standards for SED file name"""
+
+	@staticmethod
+	def SED_h5re(fileName):
+		""" regex validation of SED file Name for BEATS beamline"""
+
+		SED_Pattern = r'[\s]|[^\w\-]'			#  file path, spaces, special characters except dashes are not allowed
+		pathValidation = bool(re.search(SED_Pattern,fileName))
+		
+		if pathValidation or fileName.startswith("-"):
+			return True
+
+	@staticmethod
+	def SED_fileName(filePath, fileName, beamline = "SED"):
+			
+			if not re.match(r'\S', fileName): 	# To check a line whether it starts with a non-space character or not.
+				fileName = beamline
+			SEDTimeStamp = str(time.strftime("%Y%m%dT%H%M%S"))
+			SEDFileName = fileName + "-" + SEDTimeStamp
+			SEDPath = filePath + "/" + SEDFileName
+
+			return SEDPath, SEDFileName, SEDTimeStamp

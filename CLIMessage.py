@@ -1,4 +1,4 @@
-# This is a simple calss print a given message in highlight. 
+# This is a simple calss print a given message with color highlight. 
 
 from colorama import init, Fore, Back, Style
 
