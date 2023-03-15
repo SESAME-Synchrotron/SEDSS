@@ -11,6 +11,8 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 from PyQt5 import QtWidgets 
+from colorama import init, Fore, Back, Style
+
 
 
 app = QtWidgets.QApplication(sys.argv)
