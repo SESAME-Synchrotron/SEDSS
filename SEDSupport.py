@@ -4,7 +4,7 @@ SED support modules are written here
 
 import decimal 
 import json 
-from SEDSS.SEDSupplements import CLIMessage
+from SEDSS.CLIMessage import CLIMessage
 import ntpath
 import os
 import subprocess
