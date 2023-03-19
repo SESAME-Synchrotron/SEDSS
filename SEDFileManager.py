@@ -29,13 +29,17 @@ class readFile():
 
 
 class path ():
-	def __init__ (self, path, os = 'Linux'):
+	def __init__ (self, path, operatingSys = 'Linux', beamline = None, proposal = None, semester = None):
 		"""
 		Path class impliments the following: 
 		- Paths check -> retutrns true or false. 
 		- Paths creartion -> overwrite yes or no, force creation
 		"""
 		self.path = path
+		self.operatingSys = operatingSys
+		self.beamline = beamline
+		self.proposal = proposal 
+		self.semester = semester
 
 	def exist (self):
 		return os.path.exists(self.path)
@@ -46,6 +50,19 @@ class path ():
 				os.mkdir(self.path)
 			except:
 				CLIMessage ('Unable to create the path !!', 'E')
+
+	def getPropPath(self):
+		proposal = self.proposal
+		semester = self.semester
+		beamline = self.beamline
+		top 	 = self.path
+		propPath = '{}/{}/{}/{}/ExpData'.format(top, beamline, semester, proposal)
+
+		if path(propPath).exist():
+			return propPath
+		else:
+			CLIMessage ('SEDMS.getPropPath():: The path {} is not exist'.format(propPath), 'E')
+			return False 
 
 class fileName:
 	"""This class checks the experimental file path is complied with DAQ standards for SED file name"""
