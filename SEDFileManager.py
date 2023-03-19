@@ -56,13 +56,13 @@ class path ():
 		semester = self.semester
 		beamline = self.beamline
 		top 	 = self.path
-		propPath = '{}/{}/{}/{}/ExpData'.format(top, beamline, semester, proposal)
-
-		if path(propPath).exist():
-			return propPath
-		else:
-			CLIMessage ('SEDMS.getPropPath():: The path {} is not exist'.format(propPath), 'E')
-			return False 
+		propPath = '{}/{}/SEM_{}/{}/ExpData'.format(top, beamline, semester, proposal)
+		return propPath
+		# if path(propPath).exist():
+		# 	return propPath
+		# else:
+		# 	CLIMessage ('SEDFileManager.getPropPath():: The path {} is not exist'.format(propPath), 'W')
+		# 	#return False 
 
 class fileName:
 	"""This class checks the experimental file path is complied with DAQ standards for SED file name"""
