@@ -1,6 +1,6 @@
 import csv
-from SEDFileManager import path
-from CLIMessage import CLIMessage
+from SEDSS.SEDFileManager import path
+from SEDSS.CLIMessage import CLIMessage
 class VV():
     def __init__(self, val, valType): 
         self.val = val
@@ -28,19 +28,38 @@ class VV():
         else:
             return False
 
-class CSVValueLookup():
+class CSVProposal():
+    """
+    This class recevies the csv file path and a value (i.e. proposal number)
+    lookup method: 
+        - Returns the row that contains the value if found. 
+        - if not False is returned. 
+
+    """
     def __init__(self, csvFile, value):
-        if path(csvFile).exist():
-            with open(csvFile, 'r') as f:
+        self.value = str(value)
+        self.csvFile = csvFile
+
+    def lookup(self):
+        if path(self.csvFile).exist():
+            with open(self.csvFile, 'r') as f:
                 try: 
-                    csvReader = csv.reader(csvFile)
+                    csvReader = csv.reader(f)
                     header = next(csvReader)
+                    occurrenceCounter = 0 
                     for row in csvReader:
-                        if value in row:
-                            return header, row
+                        if self.value in row:
+                            occurrenceCounter += 1
+                            result = {}
+                            for i, header_value in enumerate(header):
+                                result[header_value] = row[i]
+                            return result
+                    if occurrenceCounter == 0:
+                        CLIMessage ('CSVProposal.lookup():: the value: {} could not be found in the file: {}'.format(self.value, self.csvFile), 'W')
+                        return False
                 except:
-                    CLIMessage('Uable to read the {} file'.format(csvFile), 'E')
-                    return 0, 0
+                    CLIMessage('Uable to read the {} file'.format(self.csvFile), 'E')
+                    return False
         else: 
-            CLIMessage('The path {} seems not exist'.format(csvFile), 'E')
-            return 0, 0
+            CLIMessage('The path {} seems not exist'.format(self.csvFile), 'E')
+            return False
