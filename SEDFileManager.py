@@ -2,7 +2,7 @@ import json
 import ntpath
 import os
 from SEDSS.CLIMessage import CLIMessage
-import epics
+from epics import PV
 
 class readFile():
 	def __init__(self, fullFileName):
@@ -68,10 +68,10 @@ class path ():
 	def getIHPath(self):
 		beamline = self.beamline
 		top = self.path
-		PVsFile = readFile('configrations/PVsList.json').readJSON()
-		year = PV(PVsFile['SED_YEAR']).get(timeout = 1)
+		PVsFile = readFile('SEDSS/configration/PVsList.json').readJSON()
+		year = int (PV(PVsFile['SED_YEAR']).get(timeout = 1))
 		self.IHPath = '{}/{}/IH/{}'.format(top, beamline, year)
-		print (self.IHPath)
+		return (self.IHPath)
 
 class fileName:
 	"""This class checks the experimental file path is complied with DAQ standards for SED file name"""
