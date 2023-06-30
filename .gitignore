@@ -131,3 +131,4 @@ dmypy.json
 C++/a.out
 .DS_Store
 C++/timeFunction.h.gch
+C++/test.cpp
