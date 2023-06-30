@@ -128,3 +128,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+C++/a.out
+.DS_Store
+C++/timeFunction.h.gch
