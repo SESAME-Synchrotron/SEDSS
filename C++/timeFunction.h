@@ -1,9 +1,8 @@
-#ifndef TIMEFUNCTION_H
-#define TIMEFUNCTION_H
+// header guard
+#ifndef TIMEFUNCTION_H 
+#define TIMEFUNCTION_H 
 
 #include <string>
-
-// Forward declaration of the timeFunction class
 
 /*
 timeFunction is a calss that retrieves the current time as a string in 
@@ -14,7 +13,11 @@ the same fomrat "%Y-%m-%d %H:%m:%S" with different precisions:
 	- Nanoseconds
 */ 
 
+// Forward declaration of the timeFunction class
+
 class timeFunction {
+private:
+    const char timeFormat[18]= "%Y-%m-%d %H:%M:%S";
 public:
     /* precision is to retrive time with seconds(s), milliseconds(mls), 
       microseconds (mcs) and nanoseconds (ns) 
@@ -24,7 +27,7 @@ public:
     };
     
     precision timePrecision;
-    timeFunction(precision prec = precision::s);
+    timeFunction(precision prec = precision::s); //constructor declaration 
     std::string getTimeNow();
 };
 

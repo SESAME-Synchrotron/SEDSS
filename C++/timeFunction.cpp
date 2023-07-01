@@ -4,8 +4,10 @@
 #include <iomanip>
 #include <sstream>
 
-timeFunction::timeFunction(precision prec) : timePrecision(prec) {
-}
+// timeFunction class constructor definition 
+timeFunction::timeFunction(precision prec):timePrecision(prec) {
+  // timeFunction::timePrecision = prec; --> reblaced by the above initializer 
+} 
 
 std::string timeFunction::getTimeNow() {
     /* chrono::system_clock::now() is a function returns time as a 
@@ -25,22 +27,22 @@ std::string timeFunction::getTimeNow() {
 
     switch (timePrecision) {
         case precision::s: {
-            ss << std::put_time(std::localtime(&calTime), "%Y-%m-%d %H:%M:%S");
+            ss << std::put_time(std::localtime(&calTime), timeFormat);
             break;
         }
         case precision::mls: {
             auto highResTimeMls = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime.time_since_epoch()) % 1000;
-            ss << std::put_time(std::localtime(&calTime), "%Y-%m-%d %H:%M:%S") << "." << highResTimeMls.count();
+            ss << std::put_time(std::localtime(&calTime), timeFormat) << "." << highResTimeMls.count();
             break;
         }
         case precision::mcs: {
             auto highResTimeMcs = std::chrono::duration_cast<std::chrono::microseconds>(currentTime.time_since_epoch()) % 1000000;
-            ss << std::put_time(std::localtime(&calTime), "%Y-%m-%d %H:%M:%S") << "." << highResTimeMcs.count();
+            ss << std::put_time(std::localtime(&calTime), timeFormat) << "." << highResTimeMcs.count();
             break;
         }
         case precision::ns: {
             auto highResTimeNs = std::chrono::duration_cast<std::chrono::nanoseconds>(currentTime.time_since_epoch()) % 1000000000;
-            ss << std::put_time(std::localtime(&calTime), "%Y-%m-%d %H:%M:%S") << "." << highResTimeNs.count();
+            ss << std::put_time(std::localtime(&calTime), timeFormat) << "." << highResTimeNs.count();
             break;
         }
     }
