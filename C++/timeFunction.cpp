@@ -49,3 +49,16 @@ std::string timeFunction::getTimeNow() {
 
     return ss.str();
 }
+
+std::string timeFunction::getConciseTimeFormat(){
+    /*
+    This is a method to return the current time in compliance with 
+    IOS 8601 (concise and unambiguous) that can be used as a part of the 
+    file name.
+    */
+    auto currentTime = std::chrono::system_clock::now();
+    auto calTime = std::chrono::system_clock::to_time_t(currentTime);
+    std::stringstream ss;
+    ss << std::put_time(std::localtime(&calTime), conciseTimeFormat);
+    return ss.str();
+}

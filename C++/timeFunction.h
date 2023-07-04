@@ -17,7 +17,8 @@ the same fomrat "%Y-%m-%d %H:%m:%S" with different precisions:
 
 class timeFunction {
 private:
-    const char timeFormat[18]= "%Y-%m-%d %H:%M:%S";
+    const char timeFormat[18]         = "%Y-%m-%d %H:%M:%S";
+    const char conciseTimeFormat[14]  = "%Y%m%dT%H%M%S";
 public:
     /* precision is to retrive time with seconds(s), milliseconds(mls), 
       microseconds (mcs) and nanoseconds (ns) 
@@ -29,6 +30,7 @@ public:
     precision timePrecision;
     timeFunction(precision prec = precision::s); //constructor declaration 
     std::string getTimeNow();
+    std::string getConciseTimeFormat(); // ISO 8601 time format 
 };
 
 #endif

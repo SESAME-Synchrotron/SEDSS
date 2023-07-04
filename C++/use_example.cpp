@@ -1,5 +1,6 @@
 #include "timeFunction.h"
 #include "message.h"
+#include "file.h"
 
 #include <iostream>
 
@@ -8,6 +9,8 @@ int main(int argc, char const *argv[])
 	
 	CLIMessage cliMsg;
 	LogMessage logMsg; 
+	SEDFile expFile; 
+
 	std::cout<<std::endl;
 	std::cout<<"################## Log Messages Examples ##################"<<std::endl;
 
@@ -36,6 +39,14 @@ int main(int argc, char const *argv[])
 	std::cout << "Time now in microseconds: " << timenow <<std::endl;
 	timenow = timeFunction(timeFunction::precision::ns).getTimeNow();
 	std::cout << "Time now in nanoseconds: " << timenow <<std::endl;
+	timenow = timeFunction(timeFunction::precision::s).getConciseTimeFormat();
+	std::cout << "Concise time format: " << timenow <<std::endl;
+
+	std::cout<<std::endl;
+	std::cout<<"################## SEDFile ##################"<<std::endl;
+
+	std::string fileName {expFile.getName()};
+	std::cout <<fileName<<std::endl; 
 
 	return 0;
 }
