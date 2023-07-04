@@ -1,6 +1,7 @@
 #ifndef MESSAGE
 #define MESSAGE 
 
+#include "timeFunction.h"
 #include <string>
 
 class Message {
@@ -31,4 +32,19 @@ class Message {
         std::string Type; 
         Message(std::string, std::string type);
 };
-#endif 
+
+class CLIMessage:public Message{
+    public:
+        CLIMessage(std::string message = "None", std::string type = "U");
+        void show(std::string message, std::string type);
+
+};
+
+class LogMessage:public Message {
+    public:
+        timeFunction timeStamp = timeFunction(timeFunction::precision::mcs);
+        LogMessage(std::string message = "None", std::string type = "U");
+        void show(std::string message, std::string type);
+};
+
+#endif

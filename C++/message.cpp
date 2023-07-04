@@ -1,4 +1,5 @@
 #include "message.h"
+#include <iostream>
 
 void Message::initMsgOptions()
 {
@@ -57,4 +58,56 @@ Message::Message(std::string message, std::string type)
     Type = type;
     initMsgOptions();
     msgInterpretation();
+}
+
+CLIMessage::CLIMessage(std::string message, std::string type):Message(message, type){};
+
+void CLIMessage::show(std::string message, std::string type = "U"){
+    Message::Msg = message; 
+    Message::Type = type; 
+
+    int interpretedMsg = Message::msgInterpretation (); 
+    switch (interpretedMsg){
+		case 1:
+			std::cout << "\033[0;32m" << Message::Msg << "\033[0m" << std::endl;
+			break;
+		case 2: 
+			std::cout << "\033[0;33m" << Message::Msg << "\033[0m" << std::endl;
+			break;
+		case 3:
+			std::cout << "\033[1;31m" << Message::Msg << "\033[0m" << std::endl;
+			break;
+		case 4:
+			std::cout << "\033[37;41m" << "Critical:: " << Message::Msg << "\033[0m" << std::endl;
+			break;
+		case 5: 
+			std::cout << "\033[1;34m" << Message::Msg << "\033[0m" << std::endl;
+			break;
+		}
+}
+
+LogMessage::LogMessage(std::string message, std::string type):Message(message, type){};
+
+void LogMessage::show(std::string message, std::string type = "U"){
+    Message::Msg = message;
+    Message::Type = type; 
+
+    int interpretedMsg = msgInterpretation (); 
+		switch (interpretedMsg){
+		case 1:
+			std::cout << "\033[0;32m" << timeStamp.getTimeNow() <<": "<< Msg << "\033[0m" << std::endl;
+			break;
+		case 2: 
+			std::cout << "\033[0;33m" << timeStamp.getTimeNow() <<": "<< Msg << "\033[0m" << std::endl;
+			break;
+		case 3:
+			std::cout << "\033[1;31m" << timeStamp.getTimeNow() <<": "<< Msg << "\033[0m" << std::endl;
+			break;
+		case 4:
+			std::cout << "\033[37;41m" << timeStamp.getTimeNow() <<": Critical:: " << Msg << "\033[0m" << std::endl;
+			break;
+		case 5: 
+			std::cout << "\033[1;34m" << timeStamp.getTimeNow() <<": "<< Msg << "\033[0m" << std::endl;
+			break;
+		}
 }
