@@ -2,14 +2,14 @@
 #include <string>
 #include <regex>
 
-validate::validate(std::string inputValue){
-    validate::input = inputValue;
+Validate::Validate(std::string inputValue){
+    Validate::input = inputValue;
 }
 
-bool validate::valFileName(std::string filename){
+bool Validate::valFileName(std::string filename){
     /*
-    A method to validate the file name.
+    A method to Validate the file name.
     */
-   validate::input = filename;
-    return regex_match(validate::input, validate::regexFilename);
+   Validate::input = filename;
+    return regex_match(Validate::input, Validate::regexFilename);
 }

@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 	CLIMessage cliMsg;
 	LogMessage logMsg; 
 	SEDFile expFile; 
-	validate val; 
+	Validate val; 
 
 	std::cout<<std::endl;
 	std::cout<<"################## Log Messages Examples ##################"<<std::endl;
@@ -51,7 +51,7 @@ int main(int argc, char const *argv[])
 	std::cout <<fileName<<std::endl;
 
 	std::cout<<std::endl;
-	std::cout<<"################## validate ##################"<<std::endl;
+	std::cout<<"################## Validate ##################"<<std::endl;
 	
 	std::string filename {"SESAME"};
 	bool validFileName {val.valFileName(filename)};

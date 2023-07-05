@@ -3,11 +3,11 @@
 
 #define REGEXFILENAME "^[a-zA-Z_][a-zA-Z0-9_]*$"
 
-class validate{
+class Validate{
     private: 
         std::regex regexFilename{REGEXFILENAME};
     public:
         std::string input; 
-        bool valFileName(std::string); // A method to validate file name.
-        validate (std::string inputValue = "SEDfileName");
+        bool valFileName(std::string); // A method to Validate file name.
+        Validate (std::string inputValue = "SEDfileName");
 };
