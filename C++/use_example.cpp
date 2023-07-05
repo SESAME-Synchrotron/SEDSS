@@ -1,6 +1,7 @@
 #include "timeFunction.h"
 #include "message.h"
 #include "file.h"
+#include "validate.h"
 
 #include <iostream>
 
@@ -10,6 +11,7 @@ int main(int argc, char const *argv[])
 	CLIMessage cliMsg;
 	LogMessage logMsg; 
 	SEDFile expFile; 
+	validate val; 
 
 	std::cout<<std::endl;
 	std::cout<<"################## Log Messages Examples ##################"<<std::endl;
@@ -46,7 +48,20 @@ int main(int argc, char const *argv[])
 	std::cout<<"################## SEDFile ##################"<<std::endl;
 
 	std::string fileName {expFile.getName()};
-	std::cout <<fileName<<std::endl; 
+	std::cout <<fileName<<std::endl;
+
+	std::cout<<std::endl;
+	std::cout<<"################## validate ##################"<<std::endl;
+	
+	std::string filename {"SESAME"};
+	bool validFileName {val.valFileName(filename)};
+	if (validFileName){
+		std::cout<<filename<<" is a valid file name "<<std::endl;
+	}
+	else{
+		std::cout <<filename<< " is not a vilid file name" <<std::endl;
+	}
+	
 
 	return 0;
 }
