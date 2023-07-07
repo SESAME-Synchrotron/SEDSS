@@ -12,8 +12,7 @@ class Message {
         std::string warningMsgOptions  [3];
         std::string criticalMsgOptions [2];
 
-        void initMsgOptions ();
-        
+        void initMsgOptions ();        
         std::string toLowerCase (const std::string& str);
 
     protected: 
@@ -43,7 +42,7 @@ class CLIMessage:public Message{
 class LogMessage:public Message {
     public:
         timeFunction timeStamp = timeFunction(timeFunction::precision::mcs);
-        LogMessage(std::string message = "None", std::string type = "U");
+        LogMessage(std::string message = "None", std::string type = "U", bool usefile = false);
         void show(std::string message, std::string type);
 };
 

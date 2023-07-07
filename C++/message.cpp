@@ -86,7 +86,10 @@ void CLIMessage::show(std::string message, std::string type = "U"){
 		}
 }
 
-LogMessage::LogMessage(std::string message, std::string type):Message(message, type){};
+LogMessage::LogMessage(std::string message, std::string type, bool usefile):Message(message, type){
+    // bool useFile = usefile;
+    std::string fileName {"SEDLogFile"}; // Default log file name. 
+};
 
 void LogMessage::show(std::string message, std::string type = "U"){
     Message::Msg = message;
