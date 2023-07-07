@@ -47,13 +47,16 @@ int main(int argc, char const *argv[])
 	std::cout<<std::endl;
 	std::cout<<"################## SEDFile ##################"<<std::endl;
 
-	std::string fileName {expFile.getName()};
-	std::cout <<fileName<<std::endl;
+	std::string fileName {expFile.checkBaseName("-SESAME")};
+	std::cout<<"output of checkBaseName() is: "<<fileName<<std::endl; 
+	
+	fileName = expFile.getName("-OOP");
+	std::cout<<"Full experimintal name is "<<fileName<<std::endl;
 
 	std::cout<<std::endl;
 	std::cout<<"################## Validate ##################"<<std::endl;
 	
-	std::string filename {"SESAME"};
+	std::string filename {"-SESAME"};
 	bool validFileName {val.valFileName(filename)};
 	if (validFileName){
 		std::cout<<filename<<" is a valid file name "<<std::endl;
@@ -61,7 +64,5 @@ int main(int argc, char const *argv[])
 	else{
 		std::cout <<filename<< " is not a vilid file name" <<std::endl;
 	}
-	
-
 	return 0;
 }
