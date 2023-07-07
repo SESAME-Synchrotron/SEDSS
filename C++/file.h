@@ -3,9 +3,10 @@
 
 class SEDFile{
     private:
-        
+
     public:
         std::string fileBaseName; 
-        std::string getName ();
-        SEDFile (std::string filebasename = "logFile");  
+        std::string getName (std::string baseName = "defaultFullName");
+        std::string checkBaseName (std::string baseName = "defultBaseName");
+        SEDFile (std::string filebasename = "defultBaseName");  
 };
