@@ -22,6 +22,11 @@ int main(int argc, char const *argv[])
 	logMsg.show("This is a critical log message ", "c");
 	
 	std::cout<<std::endl;
+	std::cout<<"################## Create Log File ##################"<<std::endl;
+
+	logMsg.setupLogFile();
+
+	std::cout<<std::endl;
 	std::cout<<"################## CLI Messages Examples ##################"<<std::endl;
 
 	cliMsg.show("This is info CLI Message", "I");

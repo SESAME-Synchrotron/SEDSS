@@ -1,5 +1,11 @@
 #include "message.h"
 #include <iostream>
+#include <algorithm>
+#include <cctype>
+#include <fstream>
+#include <stdexcept>
+#include <unistd.h>
+#include <regex>
 
 void Message::initMsgOptions()
 {
@@ -88,29 +94,64 @@ void CLIMessage::show(std::string message, std::string type = "U"){
 
 LogMessage::LogMessage(std::string message, std::string type, bool usefile):Message(message, type){
     // bool useFile = usefile;
-    std::string fileName {"SEDLogFile"}; // Default log file name. 
 };
 
 void LogMessage::show(std::string message, std::string type = "U"){
     Message::Msg = message;
     Message::Type = type; 
 
+    std::string logMsg;
+    
     int interpretedMsg = msgInterpretation (); 
 		switch (interpretedMsg){
 		case 1:
-			std::cout << "\033[0;32m" << timeStamp.getTimeNow() <<": "<< Msg << "\033[0m" << std::endl;
+            logMsg = timeStamp.getTimeNow() + ": Information:: " + Msg;
+			std::cout << "\033[0;32m" <<  logMsg << "\033[0m" << std::endl;
 			break;
 		case 2: 
-			std::cout << "\033[0;33m" << timeStamp.getTimeNow() <<": "<< Msg << "\033[0m" << std::endl;
+            logMsg = timeStamp.getTimeNow() + ": Warning:: " + Msg;
+			std::cout << "\033[0;33m" << logMsg << "\033[0m" << std::endl;
 			break;
 		case 3:
-			std::cout << "\033[1;31m" << timeStamp.getTimeNow() <<": "<< Msg << "\033[0m" << std::endl;
+            logMsg = timeStamp.getTimeNow() + ": Error:: " + Msg;
+			std::cout << "\033[1;31m" << logMsg << "\033[0m" << std::endl;
 			break;
 		case 4:
-			std::cout << "\033[37;41m" << timeStamp.getTimeNow() <<": Critical:: " << Msg << "\033[0m" << std::endl;
+            logMsg = timeStamp.getTimeNow() + ": Critical:: " + Msg;
+			std::cout << "\033[37;41m" << logMsg << "\033[0m" << std::endl;
 			break;
 		case 5: 
-			std::cout << "\033[1;34m" << timeStamp.getTimeNow() <<": "<< Msg << "\033[0m" << std::endl;
+            logMsg = timeStamp.getTimeNow() + ": " + Msg;
+			std::cout << "\033[1;34m" << logMsg << "\033[0m" << std::endl;
 			break;
 		}
+        writeLogs(logMsg);
+}
+
+void LogMessage::setupLogFile(){
+
+    // Check if the file exists or not
+    if (!access(logFileName.c_str(), F_OK) == 0){
+
+        std::ofstream logFile(logFileName);
+        // Check if the file can be opened successfully
+        if (logFile.is_open()){
+            logFile.close();
+        } else{
+            throw std::runtime_error("Unable to create log file.");   // raise error
+        }
+    } else{
+        std::cout << "The log file is already exists." << std::endl;
+    }
+}
+
+void LogMessage::writeLogs(std::string message){
+
+    std::string Msg = message;
+    std::regex colorPattern("\033\\[[0-9;]*m");     // regex to remove the color pattern
+    std::string logWithoutColor = std::regex_replace(Msg, colorPattern, "");
+
+    std::ofstream logFile(logFileName, std::ios::app);  // Open the file in append mode
+    logFile << logWithoutColor << "\n";
+    logFile.close();
 }

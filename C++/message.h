@@ -18,7 +18,7 @@ class Message {
     protected: 
         enum messageID {
             I = 1, // information message
-		    W = 2, // Worning Message 
+		    W = 2, // Warning Message 
 		    E = 3, // Error message 
 		    C = 4, // Critical	
 		    U = 5  // Unknown
@@ -42,8 +42,11 @@ class CLIMessage:public Message{
 class LogMessage:public Message {
     public:
         timeFunction timeStamp = timeFunction(timeFunction::precision::mcs);
+        const std::string logFileName {"SEDLogFile.log"}; // Default log file name.
         LogMessage(std::string message = "None", std::string type = "U", bool usefile = false);
         void show(std::string message, std::string type);
+        void setupLogFile();
+        void writeLogs(std::string messsage);
 };
 
 #endif
