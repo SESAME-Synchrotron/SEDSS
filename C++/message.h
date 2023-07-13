@@ -3,6 +3,9 @@
 
 #include "timeFunction.h"
 #include <string>
+#include <regex>
+
+#define REGEXCOLORPATTERN "\033\\[[0-9;]*m"
 
 class Message {
     private:
@@ -29,7 +32,7 @@ class Message {
     public: 
         std::string Msg; 
         std::string Type; 
-        Message(std::string, std::string type);
+        Message(std::string Msg, std::string type);
 };
 
 class CLIMessage:public Message{
@@ -40,13 +43,14 @@ class CLIMessage:public Message{
 };
 
 class LogMessage:public Message {
+    private:
+        std::regex regexColorPattern{REGEXCOLORPATTERN};
     public:
         timeFunction timeStamp = timeFunction(timeFunction::precision::mcs);
-        const std::string logFileName {"SEDLogFile.log"}; // Default log file name.
         LogMessage(std::string message = "None", std::string type = "U", bool usefile = false);
         void show(std::string message, std::string type);
-        void setupLogFile();
-        void writeLogs(std::string messsage);
+        void writeLogs(std::string logFile, std::string messsage);
+        std::string logFile{"SEDLogFile.log"};
 };
 
 #endif

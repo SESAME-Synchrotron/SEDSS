@@ -10,8 +10,15 @@ int main(int argc, char const *argv[])
 	
 	CLIMessage cliMsg;
 	LogMessage logMsg; 
-	SEDFile expFile; 
+	SEDFile expFile;
+	SEDFile logFile; 
 	Validate val; 
+
+	std::cout<<std::endl;
+	std::cout<<"################## Create Log File ##################"<<std::endl;
+
+	logFile.createFile("test1.log");
+	logMsg.logFile = "test1.log";
 
 	std::cout<<std::endl;
 	std::cout<<"################## Log Messages Examples ##################"<<std::endl;
@@ -20,11 +27,6 @@ int main(int argc, char const *argv[])
 	logMsg.show("This is a warning log message", "w");
 	logMsg.show("This is an error log message", "e");
 	logMsg.show("This is a critical log message ", "c");
-	
-	std::cout<<std::endl;
-	std::cout<<"################## Create Log File ##################"<<std::endl;
-
-	logMsg.setupLogFile();
 
 	std::cout<<std::endl;
 	std::cout<<"################## CLI Messages Examples ##################"<<std::endl;

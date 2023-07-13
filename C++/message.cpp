@@ -3,9 +3,6 @@
 #include <algorithm>
 #include <cctype>
 #include <fstream>
-#include <stdexcept>
-#include <unistd.h>
-#include <regex>
 
 void Message::initMsgOptions()
 {
@@ -125,33 +122,17 @@ void LogMessage::show(std::string message, std::string type = "U"){
 			std::cout << "\033[1;34m" << logMsg << "\033[0m" << std::endl;
 			break;
 		}
-        writeLogs(logMsg);
+        writeLogs(LogMessage::logFile, logMsg);
 }
 
-void LogMessage::setupLogFile(){
+void LogMessage::writeLogs(std::string logFile, std::string message){
 
-    // Check if the file exists or not
-    if (!access(logFileName.c_str(), F_OK) == 0){
-
-        std::ofstream logFile(logFileName);
-        // Check if the file can be opened successfully
-        if (logFile.is_open()){
-            logFile.close();
-        } else{
-            throw std::runtime_error("Unable to create log file.");   // raise error
-        }
-    } else{
-        std::cout << "The log file is already exists." << std::endl;
-    }
-}
-
-void LogMessage::writeLogs(std::string message){
-
+    std::string file = logFile;
     std::string Msg = message;
-    std::regex colorPattern("\033\\[[0-9;]*m");     // regex to remove the color pattern
+    std::regex colorPattern(LogMessage::regexColorPattern);     // regex to remove the color pattern
     std::string logWithoutColor = std::regex_replace(Msg, colorPattern, "");
 
-    std::ofstream logFile(logFileName, std::ios::app);  // Open the file in append mode
-    logFile << logWithoutColor << "\n";
-    logFile.close();
+    std::ofstream File(file, std::ios::app);  // Open the file in append mode
+    File << logWithoutColor << "\n";
+    File.close();
 }

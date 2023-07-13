@@ -6,7 +6,7 @@
 
 /*
 timeFunction is a calss that retrieves the current time as a string in 
-the same fomrat "%Y-%m-%d %H:%m:%S" with different precisions: 
+the same format "%Y-%m-%d %H:%m:%S" with different precisions: 
 	- Seconds 
 	- Milliseconds 
 	- Microseconds 

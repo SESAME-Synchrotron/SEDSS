@@ -4,7 +4,9 @@
 #include "message.h"
 #include <string>
 #include <iostream>
-
+#include <stdexcept>
+#include <unistd.h>
+#include <fstream>
 
 SEDFile::SEDFile(std::string filebasename){
     SEDFile::fileBaseName = filebasename;
@@ -13,7 +15,7 @@ SEDFile::SEDFile(std::string filebasename){
 std::string SEDFile::getName(std::string baseName){
     /*
     A method used to return full file name with concise time stamp
-    that is in compliance with the SED name convinstion.
+    that is in compliance with the SED name convention.
     This method: 
     - validate if the base name is in valid syntax by calling checkBaseName. 
     - returns file name, e.g. SEDFileName_20230705T113326
@@ -48,4 +50,29 @@ std::string SEDFile::checkBaseName(std::string baseName){
         checkedFileName = SEDFile::checkBaseName(newName);
     }
     return checkedFileName; 
+}
+
+void SEDFile::createFile(std::string baseName){
+    /*
+    A method to create various types of files, e.g. log file, exp. file, etc.
+    for DAQ Systems, in order to create the file,The base name must be in 
+    compliance with the file name policy
+    */
+
+    std::string fileName = baseName;
+    CLIMessage cliMsg; 
+
+        // Check if the file exists or not
+    if (!access(fileName.c_str(), F_OK) == 0){
+
+        std::ofstream file(fileName);
+        // Check if the file can be opened successfully
+        if (file.is_open()){
+            file.close();
+        } else{
+            throw std::runtime_error("Unable to create " + fileName + " file.");   // raise error
+        }
+    } else{
+        cliMsg.show("The " + fileName + " is already exists", "I");
+    }
 }
