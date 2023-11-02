@@ -34,7 +34,7 @@ class readFile():
 			CLIMessage ("{} :: load error".format(self.FName), "E")
 			print(e)
 
-	def getProposalInfo(self, proposal):
+	def getProposalInfo(self, proposal, type=None):
 		"""
 		A simple and very standard method to get the proposal info.
 		"""
@@ -43,14 +43,21 @@ class readFile():
 
 		info = df[df['Proposal'].eq(proposal)]
 
-		if not info.empty:
-			proposer = info['Proposer'].values[0]
-			email = info['Email'].values[0]
-			title = info['Title'].values[0]
-
-			return proposer, email, title
+		if type == "path":
+			if not info.empty:
+				path = info['Experimental_Data_Path'].values[0]
+				return path
+			else:
+				return None
 		else:
-			return "Proposer", "proposer@sesame.org.jo", "User Experiment"
+			if not info.empty:
+				proposer = info['Proposer'].values[0]
+				email = info['Email'].values[0]
+				title = info['Title'].values[0]
+
+				return proposer, email, title
+			else:
+				return "Proposer", "proposer@sesame.org.jo", "User Experiment"
 
 class path ():
 	def __init__ (self, path, operatingSys = 'Linux', beamline = None, proposal = None, semester = None):
