@@ -43,10 +43,10 @@ class readFile():
 
 		info = df[df['Proposal'].eq(proposal)]
 
-		if type == "path":
+		if type == "sem":
 			if not info.empty:
-				path = info['Experimental_Data_Path'].values[0]
-				return path
+				semester = info['Semester'].values[0]
+				return semester
 			else:
 				return None
 		else:
