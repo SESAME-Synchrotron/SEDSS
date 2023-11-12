@@ -98,7 +98,7 @@ class path ():
 	def getIHPath(self):
 		beamline = self.beamline
 		top = self.path
-		PVsFile = readFile('SEDSS/configration/PVsList.json').readJSON()
+		PVsFile = readFile('SEDSS/configurations/PVsList.json').readJSON()
 		year = int (PV(PVsFile['SED_YEAR']).get(timeout = 1))
 		self.IHPath = '{}/{}/IH/{}'.format(top, beamline, year)
 		return (self.IHPath)
