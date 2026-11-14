@@ -1,5 +1,6 @@
 import pathlib
-import pipes
+# import pipes
+import shlex
 import subprocess
 import os
 from SEDSS.CLIMessage import CLIMessage
@@ -23,9 +24,9 @@ class SEDTransfer ():
 		remote_dir = remote_top_dir + '/'
 		CLIMessage("*** origin: {}".format(self.source), "M")
 		CLIMessage("*** destination: {}".format(fname_destination),"M")
-		fname_destination = pipes.quote(fname_destination)
-		remote_dir = pipes.quote(remote_dir)
-		self.source = pipes.quote(self.source)
+		fname_destination = shlex.quote(fname_destination)
+		remote_dir = shlex.quote(remote_dir)
+		self.source = shlex.quote(self.source)
 		ret = self.check_remote_directory(remote_server, remote_dir)
 
 		if ret == 0:
@@ -92,9 +93,9 @@ class instantDataTransfer ():
 		remote_dir = remote_top_dir + '/'
 		#CLIMessage("*** origin: {}".format(self.source), "M")
 		#CLIMessage("*** destination: {}".format(fname_destination),"M")
-		fname_destination = pipes.quote(fname_destination)
-		remote_dir = pipes.quote(remote_dir)
-		self.source = pipes.quote(self.source)
+		fname_destination = shlex.quote(fname_destination)
+		remote_dir = shlex.quote(remote_dir)
+		self.source = shlex.quote(self.source)
 		ret = self.check_remote_directory(remote_server, remote_dir)
 
 		if ret == 0:
